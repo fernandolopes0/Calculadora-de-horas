@@ -1,21 +1,21 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
 int main()
 {
-    int h = 1, h2 = 0;
-    int m = 1, m2 = 0;
-    int s = 1, s2 = 0;
+    int h = 0, h2 = 0;
+    int m = 0, m2 = 0;
+    int s = 0, s2 = 0;
     int dia = 0;
-    string teste;
 
     cout << "Digite hora, minuto e segundos inicias:\n";
     cin >> h2;
     cin >> m2;
     cin >> s2;
 
-    while (h != 0 && m != 0 && s != 0)
+    while (true)
     {
         cout << "Digite hora, minuto e segundos a somar:\n";
         cin >> h;
@@ -28,18 +28,24 @@ int main()
 
         if (h2 > 23)
         {
-            dia = dia + 1;
-            h2 = h2 - 24;
+            dia += h2 / 24;
+            h2 %= 24;
         }
         if (s2 > 59)
         {
-            s2 = s2 - 60;
-            m2 = m2 + 1;
+            m2 += s2 / 60;
+            s2 %= 60;
         }
         if (m2 > 59)
         {
-            m2 = m2 - 60;
-            h2 = h2 + 1;
+            h2 += m2 / 60;
+            m2 %= 60;
+        }
+        if (h == 0 && m == 0 && s == 0)
+        {
+            cout << "\n Dias: " << dia;
+            cout << "\n " << setw(2) << setfill('0') << h2 << ":" << setw(2) << setfill('0') << m2 << ":" << setw(2) << setfill('0') << s2 << endl;
+            break;
         }
 
         cout << "\n Dias: " << dia;
